@@ -1,70 +1,287 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./contact.css" rel="stylesheet">
-    <title>Contact Form</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+<link rel="stylesheet" href="style.css">
 </head>
-<style>
-    body {
-        width: 100vw;
-  display: grid;
-  place-items: center;
-    }
-</style>
 <body>
 
-    <div class="container">
-        <form id="contact-form" action="mailto:sachinl0har@outlook.com" method="POST" enctype="text/plain">
-      
-          <label for="fname">First Name</label>
-          <input type="text" id="fname" name="firstname" placeholder="Your name..">
-      
-          <label for="lname">Last Name</label>
-          <input type="text" id="lname" name="lastname" placeholder="Your last name..">
-      
-          <label for="email">Email</label>
-          <input type="text" id="email" name="email" placeholder="Your Email ID..">
-      
-          <label for="message">Message</label>
-          <textarea id="message" name="message" placeholder="Your Message.." style="height:200px"></textarea>
-      
-          <button type="submit"id="submit-form">Submit</button>
-      
-        </form>
-      </div>
+<div class="login-box">
+  <h2>Contact Us</h2>
+  <form id="contactForm">
+    <div class="user-box">
+      <input type="text" id="discordId" required>
+      <label>Discord Name or User ID</label>
+    </div>
+    <div class="user-box">
+      <input type="email" id="email" required>
+      <label>Email</label>
+    </div>
+    <div class="user-box">
+      <textarea id="message" required></textarea>
+      <label>Message</label>
+    </div>
+    <a href="#" id="submitBtn" onclick="validateForm(event)">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      Submit
+    </a>
+  </form>
+</div>
 
-    <!-- <div class="message">
-        <div>
-            Fill out this contact form!
-        </div>
-        <div>
-            I will get back to you soon!
-        </div>
-    </div>
-    <div class="contact-form">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfM4GodOoRoOspVYz4YoBxImMTrTfBI4ckwjVxNrfV4JD79_w/viewform?embedded=true" width="840" height="609" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-    </div>
-    <div class="message"> -->
-        <a href="./index.html">Home</a>
-    </div>
+<script src="script.js"></script>
+
 </body>
-<script type="text/javascript">
-    var $form = $('form#contact-form'),
-    url = 'https://script.google.com/macros/s/AKfycbwq1FoWdBceyy_GK8xRUrzJXoOjg99jktOulbLIavoREOHz8v932Yu58beYtNFWCamm/exec'
-
-$('#submit-form').on('click', function(e) {
-  e.preventDefault();
-  var jqxhr = $.ajax({
-    url: url,
-    method: "GET",
-    dataType: "json",
-    data: $form.serializeObject()
-  }).success(
-    // do something
-  );
-})
-  </script>
 </html>
+<style>body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background: linear-gradient(#ffffff, #0071f3);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-box {
+  width: 400px;
+  padding: 40px;
+  background: rgba(0, 0, 0, 0.5);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, .6);
+  border-radius: 10px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.login-box .user-box {
+  position: relative;
+}
+
+.login-box .user-box input,
+.login-box .user-box textarea {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+  resize: none;
+}
+
+.login-box .user-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.login-box .user-box input:focus ~ label,
+.login-box .user-box input:active ~ label,
+.login-box .user-box textarea:focus ~ label,
+.login-box .user-box textarea:active ~ label {
+  top: -20px;
+  left: 0;
+  color: #FF0000;
+  font-size: 12px;
+}
+
+.login-box form a {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: #FF0000;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: .5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+  cursor: pointer;
+}
+
+.login-box a:hover {
+  background: #FF0000;
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #FF0000,
+              0 0 25px #FF0000,
+              0 0 50px #FF0000,
+              0 0 100px #FF0000;
+}
+
+.login-box a span {
+  position: absolute;
+  display: block;
+}
+
+.login-box a span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #FF0000);
+  animation: btn-anim1 1s linear infinite;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%, 100% {
+    left: 100%;
+  }
+}
+
+.login-box a span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, #FF0000);
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: .25s;
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%, 100% {
+    top: 100%;
+  }
+}
+
+.login-box a span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, #FF0000);
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: .5s;
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%, 100% {
+    right: 100%;
+  }
+}
+
+.login-box a span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, #FF0000);
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: .75s;
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%, 100% {
+    bottom: 100%;
+  }
+}
+.user-data {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, .7);
+  border-radius: 10px;
+  color: #fff;
+  text-align: center;
+  width: 400px;
+}
+
+.user-data h3 {
+  margin-bottom: 15px;
+}
+
+.user-data p {
+  margin: 5px 0;
+}
+
+</style>
+<script>function validateForm(event) {
+  event.preventDefault();
+
+  const discordId = document.getElementById('discordId').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const message = document.getElementById('message').value.trim();
+  const submitBtn = document.getElementById('submitBtn');
+
+  if (!discordId) {
+    alert('Please enter your Discord Name or User ID.');
+    return;
+  }
+
+  if (!email) {
+    alert('Please enter your email.');
+    return;
+  }
+
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailPattern.test(email)) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  if (!message) {
+    alert('Please enter your message.');
+    return;
+  }
+
+  submitBtn.innerText = 'Sending...';
+  setTimeout(() => {
+    submitBtn.innerText = 'Sent Successfully';
+
+    const userData = {
+      discordId: discordId,
+      email: email,
+      message: message
+    };
+
+    localStorage.setItem('userData', JSON.stringify(userData));
+    displayUserData(userData);
+
+    setTimeout(() => {
+      submitBtn.innerText = 'Submit';
+    }, 2000);
+  }, 10000);
+}
+
+function displayUserData(data) {
+  const userDataDiv = document.createElement('div');
+  userDataDiv.classList.add('user-data');
+  userDataDiv.innerHTML = `
+    <h3>Your Data:</h3>
+    <p><strong>Discord ID:</strong> ${data.discordId}</p>
+    <p><strong>Email:</strong> ${data.email}</p>
+    <p><strong>Message:</strong> ${data.message}</p>
+  `;
+  document.body.appendChild(userDataDiv);
+}</script>
